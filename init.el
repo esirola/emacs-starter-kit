@@ -1,9 +1,29 @@
-(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
-
 (require 'package)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
+
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(defvar my-packages '(clojure-mode
+                      clojure-test-mode
+                      paredit
+                      color-theme
+                      color-theme-twilight
+                      ido-ubiquitous
+                      yasnippet
+                      yasnippet-bundle
+                      smex
+                      slime
+                      magit))
+
+(dolist (p my-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
+
+
+(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 
 (dolist (m '(starter-kit
              es-globals
@@ -19,8 +39,6 @@
 (ignore-errors (require 'yasnippet) ;; not yasnippet-bundle
 	       (yas/initialize))
 
-(color-theme-enri)
-
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -31,6 +49,7 @@
  '(display-time-mode t)
  '(org-agenda-files (quote ("~/machome/Dropbox/org/progetti.org")))
  '(show-paren-mode t))
+
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -48,5 +67,3 @@
  '(outline-7 ((t (:inherit font-lock-variable-name-face))))
  '(outline-8 ((t (:inherit font-lock-constant-face))))
  '(variable-pitch ((t (:family "sans")))))
-
-

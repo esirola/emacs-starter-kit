@@ -100,6 +100,8 @@
      ;;      (info-xref ((t (:bold t :foreground "#777"))))
      )))
 
+(color-theme-enri)
+
 (message "Colors loaded!")
 
 (provide 'es-colors)
