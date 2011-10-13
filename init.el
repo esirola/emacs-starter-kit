@@ -1,4 +1,11 @@
-(require 'package)
+
+(cond ((< (string-to-int (car (split-string emacs-version "[.]" t))) 24)
+       (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+       (require 'package))
+       (t 
+	(require 'package)
+	(add-to-list 'load-path (expand-file-name "~/.emacs.d"))))
+
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
@@ -15,6 +22,7 @@
                       yasnippet
                       yasnippet-bundle
                       smex
+                      org
                       slime
                       magit))
 
@@ -23,7 +31,6 @@
     (package-install p)))
 
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 
 (dolist (m '(starter-kit
              es-globals
