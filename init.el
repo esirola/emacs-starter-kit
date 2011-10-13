@@ -1,4 +1,14 @@
 
+;; These should be loaded on startup rather than autoloaded on demand
+;; since they are likely to be used in every session
+
+(require 'cl)
+(require 'saveplace)
+(require 'ffap)
+(require 'uniquify)
+(require 'ansi-color)
+(require 'recentf)
+
 (cond ((< (string-to-int (car (split-string emacs-version "[.]" t))) 24)
        (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
        (require 'package))
@@ -14,13 +24,15 @@
   (package-refresh-contents))
 
 (defvar my-packages '(clojure-mode
+                      smex
+                      idle-highlight-mode
                       clojure-test-mode
                       paredit
                       color-theme
                       color-theme-twilight
                       ido-ubiquitous
-                      yasnippet
-                      yasnippet-bundle
+                      ;;yasnippet
+                      ;;yasnippet-bundle
                       smex
                       org
                       anything
@@ -30,21 +42,11 @@
                       magit))
 
 (dolist (p my-packages)
-  (when (not (package-installed-p 'slime-repl))
-    (package-install 'slime-repl)))
+  (when (not (package-installed-p p))
+    (package-install p)))
 
-;; These should be loaded on startup rather than autoloaded on demand
-;; since they are likely to be used in every session
-
-(require 'cl)
-(require 'saveplace)
-(require 'ffap)
-(require 'uniquify)
-(require 'ansi-color)
-(require 'recentf)
-
-(require 'yasnippet) ;; not yasnippet-bundle
-(yas/initialize)
+;;(require 'yasnippet) ;; not yasnippet-bundle
+;;(yas/initialize)
 
 
 (dolist (m '(starter-kit

@@ -13,8 +13,8 @@
 (eval-after-load "slime"
   '(progn
     ;; "Extra" features (contrib)
-    (slime-setup
-     '(slime-repl slime-banner slime-highlight-edits slime-fuzzy))
+    ;; (slime-setup
+    ;;  '(slime-repl slime-banner slime-highlight-edits slime-fuzzy))
     (setq
      ;; Use UTF-8 coding
      slime-net-coding-system 'utf-8-unix

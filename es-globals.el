@@ -33,8 +33,8 @@
       bookmark-save-flag 1)                        ;; autosave each change)
 
 (setq-default indent-tabs-mode nil)
-(setq dot-emacs-dir (concat home ".emacs.d/"))
 (setq home (concat (getenv "HOME") "/"))
+(setq dot-emacs-dir (concat home ".emacs.d/"))
 (setq c-default-style (quote ((c++-mode . "stroustrup") (java-mode . "java") (awk-mode . "awk") (other . "gnu")))
       org-agenda-files '("~/machome/Dropbox/org/progetti.org")
       uniquify-buffer-name-style 'forward)
