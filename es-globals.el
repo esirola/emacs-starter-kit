@@ -23,6 +23,8 @@
 (column-number-mode 1)
 (display-time)
 (tool-bar-mode -1)
+(menu-bar-mode t)
+(scroll-bar-mode t)
 (add-hook 'find-file-hooks 'auto-insert)
 
 (setq-default show-trailing-whitespace t

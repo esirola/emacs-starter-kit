@@ -12,7 +12,7 @@
 (cond ((< (string-to-int (car (split-string emacs-version "[.]" t))) 24)
        (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
        (require 'package))
-       (t 
+       (t
 	(require 'package)
 	(add-to-list 'load-path (expand-file-name "~/.emacs.d"))))
 
@@ -60,4 +60,7 @@
   (require m))
 
 ;;(add-to-list 'load-path (concat dot-emacs-dir "/yasnippet-0.6.1c"))
+
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
 
