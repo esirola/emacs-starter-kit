@@ -16,6 +16,8 @@
 	(require 'package)
 	(add-to-list 'load-path (expand-file-name "~/.emacs.d"))))
 
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/modules"))
+
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
@@ -39,6 +41,7 @@
                       anything-config
                       slime
                       slime-repl
+                      elisp-slime-nav
                       magit))
 
 (dolist (p my-packages)

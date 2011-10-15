@@ -9,6 +9,7 @@
 (require 'paredit)
 (require 'clojure-mode)
 (require 'es-common)
+(require 'starter-kit-lisp)
 
 (eval-after-load "slime"
   '(progn
@@ -19,7 +20,8 @@
      ;; Use UTF-8 coding
      slime-net-coding-system 'utf-8-unix
      ;; Use fuzzy completion (M-Tab)
-     slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
+     ;;slime-complete-symbol-function 'slime-fuzzy-complete-symbol
+     )
     ;; Use parentheses editting mode paredit
     (add-hook 'slime-mode-hook 'paredit-mode-enable)
     ))
