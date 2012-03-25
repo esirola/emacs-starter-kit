@@ -29,6 +29,7 @@
 (tool-bar-mode -1)
 (menu-bar-mode t)
 (scroll-bar-mode t)
+(cua-mode t)
 
 (setq-default show-trailing-whitespace t
               indicate-empty-lines t)
