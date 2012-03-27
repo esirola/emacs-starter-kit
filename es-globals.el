@@ -13,7 +13,6 @@
         '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 (defconst european-calendar-style 't)
 (global-font-lock-mode t)
-(global-hl-line-mode t)
 (transient-mark-mode t)
 (show-paren-mode t)
 (setq calendar-week-start-day 1)
@@ -28,7 +27,11 @@
 (display-time)
 (tool-bar-mode -1)
 (menu-bar-mode t)
-(scroll-bar-mode t)
+
+(when window-system
+  (global-hl-line-mode t)
+  (scroll-bar-mode t))
+
 (cua-mode t)
 
 (setq-default show-trailing-whitespace t
