@@ -79,7 +79,8 @@
              es-python
              es-skel
              es-org
-             es-colors))
+             es-colors
+             es-bindings))
   (require m))
 
 ;;(add-to-list 'load-path (concat dot-emacs-dir "/yasnippet-0.6.1c"))
