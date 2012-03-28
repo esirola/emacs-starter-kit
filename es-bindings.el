@@ -22,7 +22,7 @@
 (autoload (quote dired-jump-other-window) "dired" "\
      Like \\[dired-jump] (dired-jump) but in other window." t nil)
 ;; ----------------------------------------------------------------------
-(global-set-key (kbd "C-x g") 'goto-line)
+(global-set-key (kbd "C-l") 'goto-line)
 ;; tasti funzione
 (global-set-key (kbd "<f2>") 'previous-buffer)
 (global-set-key (kbd "<f3>") 'next-buffer)
@@ -31,20 +31,58 @@
 (global-set-key (kbd "<C-f4>") 'delete-window) ; remove the selected window
 (global-set-key (kbd "<f5>") 'other-frame)
 (global-set-key (kbd "<f12>") 'eshell)
-;;; roba per tastiera italiana su mac
-;; (when (featurep 'aquamacs)
-;;   (global-set-key (kbd "M-\230") "@")
-;;   (global-set-key (kbd "M-\223") "~")
-;;   (global-set-key (kbd "M-\210") "#")
-;;   (global-set-key (kbd "M-ò") "@")
-;;   (global-set-key (kbd "M-à") "#")
-;;   (global-set-key (kbd "M-ì") "~")
-;;   (global-set-key (kbd "M-è") "[")
-;;   (global-set-key (kbd "M-+") "]")
-;;   (global-set-key (kbd "M-\\") "`"))
-
 ;; (autoload 'py-complete-init "py-complete")
 ;; (add-hook 'python-mode-hook 'py-complete-init)
+
+(global-set-key (kbd "M-/") 'hippie-expand)
+(global-set-key (kbd "C-x b")
+  (lambda () (interactive)
+    (anything
+     :prompt "Switch to: "
+     :candidate-number-limit 10                 ;; up to 10 of each
+     :sources
+     '( anything-c-source-buffers               ;; buffers
+        anything-c-source-recentf               ;; recent files
+        anything-c-source-bookmarks             ;; bookmarks
+        anything-c-source-files-in-current-dir+ ;; current dir
+        anything-c-source-locate))))            ;; use 'locate'
+
+(global-set-key (kbd "C-c I")  ;; i -> info
+  (lambda () (interactive)
+    (anything
+      :prompt "Info about: "
+      :candidate-number-limit 3
+      :sources
+      '( anything-c-source-info-libc             ;; glibc docs
+         anything-c-source-man-pages             ;; man pages
+         anything-c-source-info-emacs))))        ;; emacs
+
+;;; keybindings
+
+;; manipolazione finestre + semplice
+(global-set-key (kbd "M-0") 'delete-window)
+(global-set-key (kbd "M-1") 'delete-other-windows)
+(global-set-key (kbd "M-2") 'split-window-vertically)
+(global-set-key (kbd "M-3") 'split-window-horizontally)
+(global-set-key (kbd "M-o") 'other-window)
+(global-unset-key (kbd "C-x 0"))
+(global-unset-key (kbd "C-x 1"))
+(global-unset-key (kbd "C-x 2"))
+(global-unset-key (kbd "C-x 3"))
+(global-unset-key (kbd "C-x o"))
+;; anche per 'sti due major modes
+(add-hook
+ 'dired-mode-hook
+ (lambda () (define-key dired-mode-map (kbd "M-o") 'other-window)))
+(add-hook
+ 'ibuffer-mode-hook
+ (lambda () (define-key ibuffer-mode-map (kbd "M-o") 'other-window)))
+;; M-k per uccidere il buffer attuale
+(global-set-key (kbd "M-k") 'kill-this-buffer)
+;; ibuffer > list buffers
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+;; mark whole buffer
+(global-set-key (kbd "M-a") 'mark-whole-buffer)
 
 (message "bindings loaded!")
 

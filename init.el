@@ -3,9 +3,18 @@
 ;; since they are likely to be used in every session
 
 (require 'cl)
+;; When you visit a file, point goes to the last place where it was
+;; when you previously visited the same file.
 (require 'saveplace)
+;; FFAP mode replaces certain key bindings for finding files,
+;; including C-x C-f, with commands that provide more sensitive
+;; defaults.
 (require 'ffap)
+;; Making Buffer Names Unique
 (require 'uniquify)
+;; translates ANSI SGR (Select Graphic Rendition) escape sequences
+;; like “Esc [ 30 m” into EmacsOverlays, TextProperties, or
+;; XEmacsExtents with face colours, bold, etc.
 (require 'ansi-color)
 (require 'recentf)
 

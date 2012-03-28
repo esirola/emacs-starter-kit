@@ -12,27 +12,49 @@
   (list (format "%s %%S: %%j " (system-name))
         '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 (defconst european-calendar-style 't)
+
 (global-font-lock-mode t)
 (transient-mark-mode t)
 (show-paren-mode t)
 (setq calendar-week-start-day 1)
 (setq visible-bell t)
+(setq-default save-place t)
 
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'find-file-hooks 'auto-insert)
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
+(add-hook 'shell-hook 'ansi-color-for-comint-mode-on)
 
 (line-number-mode 1)
 (column-number-mode 1)
 (display-time)
 (tool-bar-mode -1)
 (menu-bar-mode t)
+(cua-mode t)
+;;(ffap-bindings)
+(ido-mode t)
+(recentf-mode 1)
 
 (when window-system
   (global-hl-line-mode t)
   (scroll-bar-mode t))
 
-(cua-mode t)
+;; il seguito e' reso obsoleto dall'uso di tmux con le seguenti
+;; opzioni nel file di conf:
+;; set -g default-terminal "xterm-256color"
+;; set -g xterm-keys on
+;; tenuto per riferimento
+(defun terminal-bindings ()
+  "bindongs to be used when running in a terminal"
+  (interactive)
+  ;; this is what readline does (see inputrc)
+  ;; unfortunately, it's a problem when some modes redefine
+  ;; C-<left|right|up|down> because it's not reflected here
+  (global-set-key (kbd "M-[ c") 'forward-word) ; C-<right>
+  (global-set-key (kbd "M-[ d") 'backward-word) ; C-<left>
+  (global-set-key (kbd "M-[ a") 'backward-paragraph) ; C-<up>
+  (global-set-key (kbd "M-[ b") 'forward-paragraph) ; C-<down>
+  )
 
 (setq-default show-trailing-whitespace t
               indicate-empty-lines t)
@@ -86,51 +108,6 @@
 ;;   t)
 
 
-(global-set-key (kbd "M-/") 'hippie-expand)
-(global-set-key (kbd "C-x b")
-  (lambda () (interactive)
-    (anything
-     :prompt "Switch to: "
-     :candidate-number-limit 10                 ;; up to 10 of each
-     :sources
-     '( anything-c-source-buffers               ;; buffers
-        anything-c-source-recentf               ;; recent files
-        anything-c-source-bookmarks             ;; bookmarks
-        anything-c-source-files-in-current-dir+ ;; current dir
-        anything-c-source-locate))))            ;; use 'locate'
-
-(global-set-key (kbd "C-c I")  ;; i -> info
-  (lambda () (interactive)
-    (anything
-      :prompt "Info about: "
-      :candidate-number-limit 3
-      :sources
-      '( anything-c-source-info-libc             ;; glibc docs
-         anything-c-source-man-pages             ;; man pages
-         anything-c-source-info-emacs))))        ;; emacs
-
-;;; keybindings
-
-;; manipolazione finestre + semplice
-(global-set-key (kbd "M-0") 'delete-window)
-(global-set-key (kbd "M-1") 'delete-other-windows)
-(global-set-key (kbd "M-2") 'split-window-vertically)
-(global-set-key (kbd "M-3") 'split-window-horizontally)
-(global-set-key (kbd "M-o") 'other-window)
-(global-unset-key (kbd "C-x 0"))
-(global-unset-key (kbd "C-x 1"))
-(global-unset-key (kbd "C-x 2"))
-(global-unset-key (kbd "C-x 3"))
-(global-unset-key (kbd "C-x o"))
-;; anche per 'sti due major modes
-(add-hook 'dired-mode-hook (lambda () (define-key dired-mode-map (kbd "M-o") 'other-window)))
-(add-hook 'ibuffer-mode-hook (lambda () (define-key ibuffer-mode-map (kbd "M-o") 'other-window)))
-;; M-k per uccidere il buffer attuale
-(global-set-key (kbd "M-k") 'kill-this-buffer)
-;; ibuffer > list buffers
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-;; mark whole buffer
-(global-set-key (kbd "M-a") 'mark-whole-buffer)
 
 (message "Globals Loaded!")
 
