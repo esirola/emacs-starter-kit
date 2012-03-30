@@ -53,6 +53,7 @@
                       color-theme
                       color-theme-twilight
                       ido-ubiquitous
+                      deft
                       ;;yasnippet
                       ;;yasnippet-bundle
                       smex
@@ -80,6 +81,7 @@
              es-skel
              es-org
              es-colors
+             es-deft
              es-bindings))
   (require m))
 
