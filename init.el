@@ -56,6 +56,7 @@
                       yasnippet
                       yasnippet-bundle
                       bookmark+
+                      deft
                       smex
                       org
                       anything
@@ -81,6 +82,7 @@
              es-skel
              es-org
              es-colors
+             es-deft
              es-bindings))
   (require m))
 
