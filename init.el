@@ -53,8 +53,9 @@
                       color-theme
                       color-theme-twilight
                       ido-ubiquitous
-                      ;;yasnippet
-                      ;;yasnippet-bundle
+                      yasnippet
+                      yasnippet-bundle
+                      bookmark+
                       smex
                       org
                       anything
