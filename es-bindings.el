@@ -1,3 +1,10 @@
+;; ----------------------------------------------------------------------
+;; mette a posto i tasti funzione per la tastiera xterm
+;; funziona solo con emacs >= 23
+;; ----------------------------------------------------------------------
+
+(require 'es-xterm)
+(es-apply-xterm-bindings)
 
 ;; ----------------------------------------------------------------------
 ;; carica le features estese di dired
@@ -11,8 +18,7 @@
             (setq dired-omit-extensions '(".o" ".lo" ".pyc" ".pyo" ".elc" "~"))
             (dired-omit-mode t)
             ))
-(global-set-key (kbd "C-x C-j") 'dired-jump)
-(global-set-key (kbd "C-x 4 C-j") 'dired-jump-other-window)
+
 (autoload (quote dired-jump) "dired" "\
      Jump to Dired buffer corresponding to current buffer.
      If in a file, Dired the current directory and move to file's line.
@@ -21,16 +27,12 @@
      buffer and try again." t nil)
 (autoload (quote dired-jump-other-window) "dired" "\
      Like \\[dired-jump] (dired-jump) but in other window." t nil)
-;; ----------------------------------------------------------------------
+
+;;; ----------------------------------------------------------------------
+;;; keybindings
+;;; ----------------------------------------------------------------------
+
 (global-set-key (kbd "C-l") 'goto-line)
-;; tasti funzione
-(global-set-key (kbd "<f2>") 'previous-buffer)
-(global-set-key (kbd "<f3>") 'next-buffer)
-(global-set-key (kbd "<f4>") 'other-window) ; select the other window
-(global-set-key (kbd "<S-f4>") 'delete-other-windows) ; remove the other windows
-(global-set-key (kbd "<C-f4>") 'delete-window) ; remove the selected window
-(global-set-key (kbd "<f5>") 'other-frame)
-(global-set-key (kbd "<f12>") 'eshell)
 ;; (autoload 'py-complete-init "py-complete")
 ;; (add-hook 'python-mode-hook 'py-complete-init)
 
@@ -57,19 +59,29 @@
          anything-c-source-man-pages             ;; man pages
          anything-c-source-info-emacs))))        ;; emacs
 
-;;; keybindings
+;; apri la directory contenente il buffer corrente
+(global-set-key (kbd "<f11>") 'dired-jump)
+(global-set-key (kbd "S-<f11>") 'dired-jump-other-window)
+(global-set-key (kbd "C-<f11>") 'ido-dired)
 
 ;; manipolazione finestre + semplice
-(global-set-key (kbd "M-0") 'delete-window)
-(global-set-key (kbd "M-1") 'delete-other-windows)
-(global-set-key (kbd "M-2") 'split-window-vertically)
-(global-set-key (kbd "M-3") 'split-window-horizontally)
+(global-set-key (kbd "<f1>") 'delete-other-windows)
+(global-set-key (kbd "S-<f1>") 'delete-window)
+(global-set-key (kbd "<f2>") 'split-window-vertically)
+(global-set-key (kbd "S-<f2>") 'split-window-horizontally)
+(global-set-key (kbd "<f3>") 'next-buffer)
+(global-set-key (kbd "S-<f3>") 'previous-buffer)
+(global-set-key (kbd "<f4>") 'next-frame)
+(global-set-key (kbd "S-<f4>") 'previous-frame)
+(global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "M-o") 'other-window)
+
 (global-unset-key (kbd "C-x 0"))
 (global-unset-key (kbd "C-x 1"))
 (global-unset-key (kbd "C-x 2"))
 (global-unset-key (kbd "C-x 3"))
 (global-unset-key (kbd "C-x o"))
+
 ;; anche per 'sti due major modes
 (add-hook
  'dired-mode-hook
@@ -82,7 +94,7 @@
 ;; ibuffer > list buffers
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 ;; mark whole buffer
-(global-set-key (kbd "M-a") 'mark-whole-buffer)
+(global-set-key (kbd "C-x C-a") 'mark-whole-buffer)
 
 (message "bindings loaded!")
 
