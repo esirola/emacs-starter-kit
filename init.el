@@ -64,8 +64,7 @@
                       ;; slime
                       ;; slime-repl
                       ;;elisp-slime-nav
-                      )
-  magit)
+                      magit))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -91,4 +90,3 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (when (file-exists-p custom-file)
     (load custom-file))
-

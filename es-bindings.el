@@ -76,11 +76,11 @@
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "M-o") 'other-window)
 
-(global-unset-key (kbd "C-x 0"))
-(global-unset-key (kbd "C-x 1"))
-(global-unset-key (kbd "C-x 2"))
-(global-unset-key (kbd "C-x 3"))
-(global-unset-key (kbd "C-x o"))
+;; (global-unset-key (kbd "C-x 0"))
+;; (global-unset-key (kbd "C-x 1"))
+;; (global-unset-key (kbd "C-x 2"))
+;; (global-unset-key (kbd "C-x 3"))
+;; (global-unset-key (kbd "C-x o"))
 
 ;; anche per 'sti due major modes
 (add-hook
