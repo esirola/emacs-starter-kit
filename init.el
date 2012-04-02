@@ -54,6 +54,7 @@
                       color-theme-twilight
                       ido-ubiquitous
                       deft
+                      dired+
                       ;;yasnippet
                       ;;yasnippet-bundle
                       smex
