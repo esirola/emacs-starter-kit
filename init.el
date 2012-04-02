@@ -1,4 +1,3 @@
-
 ;; These should be loaded on startup rather than autoloaded on demand
 ;; since they are likely to be used in every session
 
@@ -53,10 +52,11 @@
                       color-theme
                       color-theme-twilight
                       ido-ubiquitous
+                      yasnippet
+                      yasnippet-bundle
+                      bookmark+
                       deft
                       dired+
-                      ;;yasnippet
-                      ;;yasnippet-bundle
                       smex
                       org
                       anything
