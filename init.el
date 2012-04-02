@@ -28,7 +28,7 @@
 (defvar my-packages '(clojure-mode
                       smex
                       idle-highlight-mode
-                      clojure-test-mode
+                      ;;clojure-test-mode
                       paredit
                       color-theme
                       color-theme-twilight
@@ -39,10 +39,11 @@
                       org
                       anything
                       anything-config
-                      slime
-                      slime-repl
-                      elisp-slime-nav
-                      magit))
+                      ;; slime
+                      ;; slime-repl
+                      ;;elisp-slime-nav
+                      )
+  magit)
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -51,7 +52,6 @@
 ;;(require 'yasnippet) ;; not yasnippet-bundle
 ;;(yas/initialize)
 
-
 (dolist (m '(starter-kit
              es-globals
              es-erlang
@@ -59,11 +59,13 @@
              es-python
              es-skel
              es-org
-             es-colors))
+             es-colors
+	     ))
   (require m))
 
 ;;(add-to-list 'load-path (concat dot-emacs-dir "/yasnippet-0.6.1c"))
 
 (setq custom-file "~/.emacs.d/custom.el")
-(load custom-file)
+(when (file-exists-p custom-file)
+    (load custom-file))
 

@@ -5,7 +5,7 @@
 ;; Customize swank-clojure start-up to reflect possible classpath changes
 ;; M-x ielm `slime-lisp-implementations RET or see 'swank-clojure.el' for more
 
-(require 'slime)
+;(require 'slime)
 (require 'paredit)
 (require 'clojure-mode)
 (require 'es-common)
@@ -23,7 +23,7 @@
      ;;slime-complete-symbol-function 'slime-fuzzy-complete-symbol
      )
     ;; Use parentheses editting mode paredit
-    (add-hook 'slime-mode-hook 'paredit-mode-enable)
+    ;(add-hook 'slime-mode-hook 'paredit-mode-enable)
     ))
 
 (eval-after-load "swank-clojure"
