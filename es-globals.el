@@ -30,7 +30,7 @@
 (display-time)
 (tool-bar-mode -1)
 (menu-bar-mode t)
-(cua-mode t)
+;;(cua-mode t)
 ;;(ffap-bindings)
 (ido-mode t)
 (recentf-mode 1)

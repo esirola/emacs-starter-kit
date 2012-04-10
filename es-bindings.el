@@ -73,8 +73,11 @@
 (global-set-key (kbd "S-<f3>") 'previous-buffer)
 (global-set-key (kbd "<f4>") 'next-frame)
 (global-set-key (kbd "S-<f4>") 'previous-frame)
-(global-set-key (kbd "<f5>") 'revert-buffer)
-(global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "<f5>") 'other-window)
+;; set F8 key to do emacs's C-x
+(global-set-key (kbd "<f8>") ctl-x-map)
+;;(global-set-key (kbd "S-<f5>") 'previous-multiframe-window)
+;(global-set-key (kbd "M-o") 'other-window)
 
 ;; (global-unset-key (kbd "C-x 0"))
 ;; (global-unset-key (kbd "C-x 1"))
@@ -83,19 +86,26 @@
 ;; (global-unset-key (kbd "C-x o"))
 
 ;; anche per 'sti due major modes
-(add-hook
- 'dired-mode-hook
- (lambda () (define-key dired-mode-map (kbd "M-o") 'other-window)))
-(add-hook
- 'ibuffer-mode-hook
- (lambda () (define-key ibuffer-mode-map (kbd "M-o") 'other-window)))
+;(add-hook
+; 'dired-mode-hook
+; (lambda () (define-key dired-mode-map (kbd "M-o") 'other-window)))
+;(add-hook
+; 'ibuffer-mode-hook
+; (lambda () (define-key ibuffer-mode-map (kbd "M-o") 'other-window)))
 ;; M-k per uccidere il buffer attuale
-(global-set-key (kbd "M-k") 'kill-this-buffer)
+;(global-set-key (kbd "M-k") 'kill-this-buffer)
 ;; ibuffer > list buffers
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+;(global-set-key (kbd "C-x C-b") 'ibuffer)
 ;; mark whole buffer
-(global-set-key (kbd "C-x C-a") 'mark-whole-buffer)
+;(global-set-key (kbd "C-x C-a") 'mark-whole-buffer)
 
+(setenv "ERGOEMACS_KEYBOARD_LAYOUT" "dv")
+(require 'ergoemacs-mode)
+;;(load "ergoemacs-keybindings-5.3.9/ergoemacs-mode.el")
+(ergoemacs-mode 1)
+(cua-mode 1)
+;; in dvorak mappa il C-x in C-t
+(global-set-key (kbd "C-t") ctl-x-map)
 (message "bindings loaded!")
 
 (provide 'es-bindings)

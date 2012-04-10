@@ -37,8 +37,10 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/modules"))
 
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") nil)
+(dolist (p (list '("melpa" . "http://melpa.milkbox.net/packages/")
+                 '("marmalade" . "http://marmalade-repo.org/packages/")))
+  (add-to-list 'package-archives p nil))
+
 (package-initialize)
 
 (when (not package-archive-contents)
@@ -61,6 +63,7 @@
                       org
                       anything
                       anything-config
+                      ergoemacs-keybindings
                       ;; slime
                       ;; slime-repl
                       ;;elisp-slime-nav
