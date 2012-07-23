@@ -23,7 +23,7 @@
      ;;slime-complete-symbol-function 'slime-fuzzy-complete-symbol
      )
     ;; Use parentheses editting mode paredit
-    ;(add-hook 'slime-mode-hook 'paredit-mode-enable)
+    (add-hook 'slime-mode-hook 'paredit-mode-enable)
     ))
 
 (eval-after-load "swank-clojure"
