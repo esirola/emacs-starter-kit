@@ -37,17 +37,22 @@
 ;; (add-hook 'python-mode-hook 'py-complete-init)
 
 (global-set-key (kbd "M-/") 'hippie-expand)
-(global-set-key (kbd "C-x b")
-  (lambda () (interactive)
-    (anything
-     :prompt "Switch to: "
-     :candidate-number-limit 10                 ;; up to 10 of each
-     :sources
-     '( anything-c-source-buffers               ;; buffers
-        anything-c-source-recentf               ;; recent files
-        anything-c-source-bookmarks             ;; bookmarks
-        anything-c-source-files-in-current-dir+ ;; current dir
-        anything-c-source-locate))))            ;; use 'locate'
+
+(defun es-switch-buffer ()
+  (interactive)
+  (anything
+   :prompt "Switch to: "
+   :candidate-number-limit 10                 ;; up to 10 of each
+   :sources
+   '( anything-c-source-buffers               ;; buffers
+      anything-c-source-recentf               ;; recent files
+      anything-c-source-bookmarks             ;; bookmarks
+      anything-c-source-files-in-current-dir+ ;; current dir
+      anything-c-source-locate))) ;; use 'locate'
+
+(global-set-key (kbd "C-x b") 'es-switch-buffer)
+(global-set-key (kbd "<f9>") 'es-switch-buffer)
+
 
 (global-set-key (kbd "C-c I")  ;; i -> info
   (lambda () (interactive)
@@ -64,8 +69,8 @@
 (global-set-key (kbd "S-<f11>") 'dired-jump-other-window)
 (global-set-key (kbd "C-<f11>") 'ido-dired)
 
-;; manipolazione finestre + semplice
 (global-set-key (kbd "<f1>") 'delete-other-windows)
+;; manipolazione finestre + semplice
 (global-set-key (kbd "S-<f1>") 'delete-window)
 (global-set-key (kbd "<f2>") 'split-window-vertically)
 (global-set-key (kbd "S-<f2>") 'split-window-horizontally)
@@ -99,13 +104,12 @@
 ;; mark whole buffer
 ;(global-set-key (kbd "C-x C-a") 'mark-whole-buffer)
 
-;(setenv "ERGOEMACS_KEYBOARD_LAYOUT" "dv")
-;(require 'ergoemacs-mode)
+;;(setenv "ERGOEMACS_KEYBOARD_LAYOUT" "dv")
+;;(require 'ergoemacs-mode)
 ;;(load "ergoemacs-keybindings-5.3.9/ergoemacs-mode.el")
-;(ergoemacs-mode 1)
+;;(ergoemacs-mode 1)
 (cua-mode 1)
 ;; in dvorak mappa il C-x in C-t
-(global-set-key (kbd "C-t") ctl-x-map)
 (message "bindings loaded!")
 
 (provide 'es-bindings)

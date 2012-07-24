@@ -37,7 +37,7 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/modules"))
 
-(dolist (p (list '("melpa" . "http://melpa.milkbox.net/packages/")
+(dolist (p (list ;;'("melpa" . "http://melpa.milkbox.net/packages/")
                  '("marmalade" . "http://marmalade-repo.org/packages/")))
   (add-to-list 'package-archives p nil))
 

@@ -4,8 +4,10 @@
 (require 'anything)
 (require 'anything-config)
 
-;;;;;;;;;;;;;;;;;;;;;;;
+;;;------------------------------------------------------------
 ;;; global variables
+;;;------------------------------------------------------------
+
 (defconst organization "StatPro Italia s.r.l.")
 (defconst user-mail-address "enrico.sirola@statpro.com")
 (defconst frame-title-format
@@ -72,7 +74,6 @@
         (java-mode . "java")
         (awk-mode . "awk")
         (other . "gnu"))
-      org-agenda-files '("~/machome/Dropbox/org/progetti.org")
       uniquify-buffer-name-style 'forward)
 
 (setq hippie-expand-try-functions-list
@@ -89,7 +90,7 @@
   "When called interactively with no active region, copy a single line instead."
   (interactive (if mark-active (list (region-beginning) (region-end))
                  (message "Copied line") (list (line-beginning-position)
-                                               (line-beginning-position2)))))
+                                               (line-beginning-position 2)))))
 
 (defadvice kill-region
   (before slick-cut activate compile)
