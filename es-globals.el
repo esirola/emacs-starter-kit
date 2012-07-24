@@ -28,7 +28,6 @@
 (line-number-mode 1)
 (column-number-mode 1)
 (display-time)
-(tool-bar-mode -1)
 (menu-bar-mode t)
 ;;(cua-mode t)
 ;;(ffap-bindings)
@@ -36,6 +35,7 @@
 (recentf-mode 1)
 
 (when window-system
+  (tool-bar-mode -1)
   (global-hl-line-mode t)
   (scroll-bar-mode t))
 

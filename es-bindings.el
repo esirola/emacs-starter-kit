@@ -99,10 +99,10 @@
 ;; mark whole buffer
 ;(global-set-key (kbd "C-x C-a") 'mark-whole-buffer)
 
-(setenv "ERGOEMACS_KEYBOARD_LAYOUT" "dv")
-(require 'ergoemacs-mode)
+;(setenv "ERGOEMACS_KEYBOARD_LAYOUT" "dv")
+;(require 'ergoemacs-mode)
 ;;(load "ergoemacs-keybindings-5.3.9/ergoemacs-mode.el")
-(ergoemacs-mode 1)
+;(ergoemacs-mode 1)
 (cua-mode 1)
 ;; in dvorak mappa il C-x in C-t
 (global-set-key (kbd "C-t") ctl-x-map)
