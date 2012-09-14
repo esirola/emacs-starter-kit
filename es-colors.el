@@ -2,6 +2,7 @@
 (require 'color-theme)
 ;; twilight doesn't have a "provides" statement
 (load-library "color-theme-twilight")
+(load-library "color-theme-molokai")
 
 (defun color-theme-enri ()
   "my color theme, based on the twilight one"
@@ -100,7 +101,7 @@
      ;;      (info-xref ((t (:bold t :foreground "#777"))))
      )))
 
-(color-theme-enri)
+(color-theme-molokai)
 
 (message "Colors loaded!")
 
