@@ -36,7 +36,7 @@
 ;; (autoload 'py-complete-init "py-complete")
 ;; (add-hook 'python-mode-hook 'py-complete-init)
 
-(global-set-key (kbd "M-/") 'hippie-expand)
+(global-set-key (kbd "M-.") 'hippie-expand)
 
 (defun es-switch-buffer ()
   (interactive)
