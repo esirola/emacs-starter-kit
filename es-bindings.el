@@ -81,6 +81,7 @@
 (global-set-key (kbd "<f5>") 'other-window)
 ;; set F8 key to do emacs's C-x
 (global-set-key (kbd "<f8>") ctl-x-map)
+(global-set-key (kbd "<f7>") 'smex)
 ;;(global-set-key (kbd "S-<f5>") 'previous-multiframe-window)
 ;(global-set-key (kbd "M-o") 'other-window)
 
