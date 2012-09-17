@@ -83,6 +83,7 @@
              es-org
              es-colors
              es-deft
+             es-aliases
              es-bindings))
   (require m))
 
