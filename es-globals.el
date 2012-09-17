@@ -13,6 +13,30 @@
         '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 (defconst european-calendar-style 't)
 
+
+;; ----------------------------------------------------------------------
+;; carica le features estese di dired
+;; ----------------------------------------------------------------------
+(add-hook 'dired-load-hook
+          (lambda ()
+            (load "dired-x")
+            ;; Set dired-x global variables here.  For example:
+            ;; (setq dired-guess-shell-gnutar "gtar")
+            ;; (setq dired-x-hands-off-my-keys nil)
+            (setq dired-omit-extensions
+                  '(".o" ".lo" ".pyc" ".pyo" ".elc" "~"))
+            (dired-omit-mode t)
+            ))
+
+(autoload (quote dired-jump) "dired" "\
+     Jump to Dired buffer corresponding to current buffer.
+     If in a file, Dired the current directory and move to file's line.
+     If in Dired already, pop up a level and goto old directory's line.
+     In case the proper Dired file line cannot be found, refresh the Dired
+     buffer and try again." t nil)
+(autoload (quote dired-jump-other-window) "dired" "\
+     Like \\[dired-jump] (dired-jump) but in other window." t nil)
+
 (global-font-lock-mode t)
 (transient-mark-mode t)
 (show-paren-mode t)

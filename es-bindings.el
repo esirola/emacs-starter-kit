@@ -6,28 +6,6 @@
 (require 'es-xterm)
 (es-apply-xterm-bindings)
 
-;; ----------------------------------------------------------------------
-;; carica le features estese di dired
-;; ----------------------------------------------------------------------
-(add-hook 'dired-load-hook
-          (lambda ()
-            (load "dired-x")
-            ;; Set dired-x global variables here.  For example:
-            ;; (setq dired-guess-shell-gnutar "gtar")
-            ;; (setq dired-x-hands-off-my-keys nil)
-            (setq dired-omit-extensions '(".o" ".lo" ".pyc" ".pyo" ".elc" "~"))
-            (dired-omit-mode t)
-            ))
-
-(autoload (quote dired-jump) "dired" "\
-     Jump to Dired buffer corresponding to current buffer.
-     If in a file, Dired the current directory and move to file's line.
-     If in Dired already, pop up a level and goto old directory's line.
-     In case the proper Dired file line cannot be found, refresh the Dired
-     buffer and try again." t nil)
-(autoload (quote dired-jump-other-window) "dired" "\
-     Like \\[dired-jump] (dired-jump) but in other window." t nil)
-
 ;;; ----------------------------------------------------------------------
 ;;; keybindings
 ;;; ----------------------------------------------------------------------
@@ -37,17 +15,21 @@
 ;; (add-hook 'python-mode-hook 'py-complete-init)
 
 (global-set-key (kbd "M-/") 'hippie-expand)
-(global-set-key (kbd "C-x b")
-  (lambda () (interactive)
-    (anything
-     :prompt "Switch to: "
-     :candidate-number-limit 10                 ;; up to 10 of each
-     :sources
-     '( anything-c-source-buffers               ;; buffers
-        anything-c-source-recentf               ;; recent files
-        anything-c-source-bookmarks             ;; bookmarks
-        anything-c-source-files-in-current-dir+ ;; current dir
-        anything-c-source-locate))))            ;; use 'locate'
+
+(defun es-switch-buffer ()
+  (interactive)
+  (anything
+   :prompt "Switch to: "
+   :candidate-number-limit 10                 ;; up to 10 of each
+   :sources
+   '( anything-c-source-buffers               ;; buffers
+      anything-c-source-recentf               ;; recent files
+      anything-c-source-bookmarks             ;; bookmarks
+      anything-c-source-files-in-current-dir+ ;; current dir
+      anything-c-source-locate)))
+
+(global-set-key (kbd "C-x b") 'es-switch-buffer)            ;; use 'locate'
+(global-set-key (kbd "<f9>") 'es-switch-buffer)            ;; use 'locate'
 
 (global-set-key (kbd "C-c I")  ;; i -> info
   (lambda () (interactive)
@@ -59,10 +41,6 @@
          anything-c-source-man-pages             ;; man pages
          anything-c-source-info-emacs))))        ;; emacs
 
-;; apri la directory contenente il buffer corrente
-(global-set-key (kbd "<f11>") 'dired-jump)
-(global-set-key (kbd "S-<f11>") 'dired-jump-other-window)
-(global-set-key (kbd "C-<f11>") 'ido-dired)
 
 ;; manipolazione finestre + semplice
 (global-set-key (kbd "<f1>") 'delete-other-windows)
@@ -74,13 +52,20 @@
 (global-set-key (kbd "<f4>") 'next-frame)
 (global-set-key (kbd "S-<f4>") 'previous-frame)
 (global-set-key (kbd "<f5>") 'revert-buffer)
-(global-set-key (kbd "M-o") 'other-window)
+;; apri la directory contenente il buffer corrente
+(global-set-key (kbd "<f10>") 'deft)
+(global-set-key (kbd "<f11>") 'dired-jump)
+(global-set-key (kbd "S-<f11>") 'dired-jump-other-window)
+(global-set-key (kbd "C-<f11>") 'ido-dired)
+(global-set-key (kbd "<f12>") 'shell)
 
-(global-unset-key (kbd "C-x 0"))
-(global-unset-key (kbd "C-x 1"))
-(global-unset-key (kbd "C-x 2"))
-(global-unset-key (kbd "C-x 3"))
-(global-unset-key (kbd "C-x o"))
+;;(global-set-key (kbd "M-o") 'other-window)
+
+;; (global-unset-key (kbd "C-x 0"))
+;; (global-unset-key (kbd "C-x 1"))
+;; (global-unset-key (kbd "C-x 2"))
+;; (global-unset-key (kbd "C-x 3"))
+;; (global-unset-key (kbd "C-x o"))
 
 ;; anche per 'sti due major modes
 (add-hook
@@ -98,4 +83,8 @@
 
 (message "bindings loaded!")
 
+;(setenv "ERGOEMACS_KEYBOARD_LAYOUT" "dv")
+;(load "~/.emacs.d/ergoemacs-keybindings-5.3.9/ergoemacs-mode.el")
+                                        ;(ergoemacs-mode 1)
+(cua-mode 1)
 (provide 'es-bindings)
