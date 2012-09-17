@@ -1,4 +1,3 @@
-
 ;; These should be loaded on startup rather than autoloaded on demand
 ;; since they are likely to be used in every session
 
@@ -38,8 +37,10 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/modules"))
 
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") nil)
+(dolist (p (list ;;'("melpa" . "http://melpa.milkbox.net/packages/")
+                 '("marmalade" . "http://marmalade-repo.org/packages/")))
+  (add-to-list 'package-archives p nil))
+
 (package-initialize)
 
 (when (not package-archive-contents)
@@ -48,7 +49,7 @@
 (defvar my-packages '(clojure-mode
                       smex
                       idle-highlight-mode
-                      clojure-test-mode
+                      ;;clojure-test-mode
                       paredit
                       color-theme
                       color-theme-twilight
@@ -57,13 +58,15 @@
                       yasnippet-bundle
                       bookmark+
                       deft
+                      dired+
                       smex
                       org
                       anything
                       anything-config
-                      slime
-                      slime-repl
-                      elisp-slime-nav
+                      ergoemacs-keybindings
+                      ;; slime
+                      ;; slime-repl
+                      ;;elisp-slime-nav
                       magit))
 
 (dolist (p my-packages)
@@ -72,7 +75,6 @@
 
 ;;(require 'yasnippet) ;; not yasnippet-bundle
 ;;(yas/initialize)
-
 
 (dolist (m '(starter-kit
              es-globals
@@ -90,4 +92,5 @@
 ;;(add-to-list 'load-path (concat dot-emacs-dir "/yasnippet-0.6.1c"))
 
 (setq custom-file "~/.emacs.d/custom.el")
-(ignore-errors (load custom-file))
+(when (file-exists-p custom-file)
+    (load custom-file))

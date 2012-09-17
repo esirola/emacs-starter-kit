@@ -5,7 +5,7 @@
 ;; Customize swank-clojure start-up to reflect possible classpath changes
 ;; M-x ielm `slime-lisp-implementations RET or see 'swank-clojure.el' for more
 
-(require 'slime)
+;(require 'slime)
 (require 'paredit)
 (require 'clojure-mode)
 (require 'es-common)

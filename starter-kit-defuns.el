@@ -64,7 +64,8 @@
   (whitespace-mode t))
 
 (defun esk-turn-on-paredit ()
-  (paredit-mode t))
+  ;(paredit-mode t)
+  )
 
 (defun esk-turn-on-idle-highlight-mode ()
   (idle-highlight-mode t))
@@ -164,7 +165,8 @@
   (interactive)
   (set (make-local-variable 'paredit-space-for-delimiter-predicates)
        '((lambda (endp delimiter) nil)))
-  (paredit-mode 1))
+  ;(paredit-mode 1)
+  )
 
 ;; A monkeypatch to cause annotate to ignore whitespace
 (defun vc-git-annotate-command (file buf &optional rev)
