@@ -132,7 +132,11 @@
 ;;   "Turn on pseudo-structural editing of Lisp code."
 ;;   t)
 
+;; auto-complete everything
 
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
 
 (message "Globals Loaded!")
 

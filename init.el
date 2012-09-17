@@ -63,7 +63,9 @@
                       org
                       anything
                       anything-config
-                      ergoemacs-keybindings
+                      auto-complete
+                      ac-slime
+                      ;; ergoemacs-keybindings
                       ;; slime
                       ;; slime-repl
                       ;;elisp-slime-nav

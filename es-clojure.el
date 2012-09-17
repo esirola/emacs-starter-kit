@@ -32,6 +32,11 @@
     ;; The function is defined in swank-clojure.el but not used?!?
     (add-hook 'slime-repl-mode-hook 'swank-clojure-slime-repl-modify-syntax t)))
 
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'slime-repl-mode))
+
 (message "Clojure loaded!")
 
 (provide 'es-clojure)
