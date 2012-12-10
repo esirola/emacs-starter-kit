@@ -12,6 +12,7 @@
   (org-remember-insinuate)
   (setq org-mobile-directory "~/Dropbox/MobileOrg"
         org-directory "~/Dropbox/org/"
+        org-mobile-inbox-for-pull "~/Dropbox/org/from-mobile.org"
         org-default-notes-file (concat org-directory "/notes.org"))
   (add-to-list 'Info-default-directory-list "~/Documents/info/"))
 

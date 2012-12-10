@@ -37,7 +37,7 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/modules"))
 
-(dolist (p (list ;;'("melpa" . "http://melpa.milkbox.net/packages/")
+(dolist (p (list '("melpa" . "http://melpa.milkbox.net/packages/")
                  '("marmalade" . "http://marmalade-repo.org/packages/")))
   (add-to-list 'package-archives p nil))
 
@@ -88,7 +88,8 @@
              es-colors
              es-deft
              es-aliases
-             es-bindings))
+             es-bindings
+             ))
   (require m))
 
 ;;(add-to-list 'load-path (concat dot-emacs-dir "/yasnippet-0.6.1c"))
