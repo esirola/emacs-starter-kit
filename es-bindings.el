@@ -18,28 +18,28 @@
 
 (defun es-switch-buffer ()
   (interactive)
-  (anything
+  (helm
    :prompt "Switch to: "
-   :candidate-number-limit 15                 ;; up to 15 of each
+   :candidate-number-limit 15            ;; up to 15 of each
    :sources
-   '( anything-c-source-buffers               ;; buffers
-      anything-c-source-recentf               ;; recent files
-      anything-c-source-bookmarks             ;; bookmarks
-      anything-c-source-files-in-current-dir+ ;; current dir
-      anything-c-source-locate)))
+   '(helm-c-source-buffers-list          ;; buffers
+     helm-c-source-recentf               ;; recent files
+     helm-c-source-bookmarks             ;; bookmarks
+     helm-c-source-files-in-current-dir  ;; current dir
+     helm-c-source-locate)))
 
 (global-set-key (kbd "C-x b") 'es-switch-buffer)            ;; use 'locate'
 (global-set-key (kbd "<f9>") 'es-switch-buffer)            ;; use 'locate'
 
 (global-set-key (kbd "C-c I")  ;; i -> info
   (lambda () (interactive)
-    (anything
+    (helm
       :prompt "Info about: "
       :candidate-number-limit 3
       :sources
-      '( anything-c-source-info-libc             ;; glibc docs
-         anything-c-source-man-pages             ;; man pages
-         anything-c-source-info-emacs))))        ;; emacs
+      '(helm-c-source-info-libc             ;; glibc doc
+        helm-c-source-man-pages             ;; man pages
+        helm-c-source-info-emacs))))        ;; emacs
 
 
 (global-set-key (kbd "<f1>") 'delete-other-windows)

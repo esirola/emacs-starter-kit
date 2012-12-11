@@ -61,10 +61,10 @@
                       dired+
                       smex
                       org
-                      anything
-                      anything-config
+                      helm
                       auto-complete
                       ac-slime
+                      ack-and-a-half
                       ;; ergoemacs-keybindings
                       ;; slime
                       ;; slime-repl

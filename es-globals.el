@@ -1,8 +1,9 @@
 (require 'cl)
 (require 'autoinsert)
 (require 'uniquify)
-(require 'anything)
-(require 'anything-config)
+(require 'helm)
+(require 'helm-misc)
+(require 'helm-config)
 
 ;;;------------------------------------------------------------
 ;;; global variables
