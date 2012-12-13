@@ -37,9 +37,9 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/modules"))
 
-(dolist (p (list ;;'("melpa" . "http://melpa.milkbox.net/packages/")
+(dolist (p (list '("melpa" . "http://melpa.milkbox.net/packages/")
                  '("marmalade" . "http://marmalade-repo.org/packages/")))
-  (add-to-list 'package-archives p nil))
+  (add-to-list 'package-archives p))
 
 (package-initialize)
 
@@ -52,17 +52,18 @@
                       ;;clojure-test-mode
                       paredit
                       color-theme
-                      color-theme-twilight
+                      ;;color-theme-twilight
                       ido-ubiquitous
                       yasnippet
-                      yasnippet-bundle
+                      ;;yasnippet-bundle
                       bookmark+
                       deft
-                      dired+
+                      ;;dired+
                       smex
                       org
-                      anything
-                      anything-config
+		      helm
+                      ;;anything
+                      ;;anything-config
                       auto-complete
                       ac-slime
                       ;; ergoemacs-keybindings
