@@ -11,8 +11,8 @@
 ;;; ----------------------------------------------------------------------
 
 (global-set-key (kbd "C-l") 'goto-line)
-;; (autoload 'py-complete-init "py-complete")
-;; (add-hook 'python-mode-hook 'py-complete-init)
+(autoload 'py-complete-init "py-complete")
+(add-hook 'python-mode-hook 'py-complete-init)
 
 (global-set-key (kbd "M-.") 'hippie-expand)
 
@@ -28,20 +28,17 @@
      helm-c-source-files-in-current-dir  ;; current dir
      helm-c-source-locate)))
 
-;;(global-set-key (kbd "C-x b") 'es-switch-buffer)            ;; use
-;;'locate'
-
 (global-set-key (kbd "<f9>") 'es-switch-buffer)
 
-;; (global-set-key (kbd "C-c I")  ;; i -> info
-;;   (lambda () (interactive)
-;;     (anything
-;;       :prompt "Info about: "
-;;       :candidate-number-limit 3
-;;       :sources
-;;       '( anything-c-source-info-libc             ;; glibc docs
-;;          anything-c-source-man-pages             ;; man pages
-;;          anything-c-source-info-emacs))))        ;; emacs
+(global-set-key (kbd "C-c I")  ;; i -> info
+  (lambda () (interactive)
+    (helm
+      :prompt "Info about: "
+      :candidate-number-limit 3
+      :sources
+      '(helm-c-source-info-libc             ;; glibc doc
+        helm-c-source-man-pages             ;; man pages
+        helm-c-source-info-emacs))))        ;; emacs
 
 
 (global-set-key (kbd "<f1>") 'delete-other-windows)

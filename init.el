@@ -72,9 +72,10 @@
                       dired+
                       smex
                       org
-		      helm
+                      helm
                       auto-complete
                       ac-nrepl
+                      ack-and-a-half
                       magit))
 
 (dolist (p my-packages)
@@ -94,7 +95,8 @@
              es-colors
              es-deft
              es-aliases
-             es-bindings))
+             es-bindings
+             ))
   (require m))
 
 ;;(add-to-list 'load-path (concat dot-emacs-dir "/yasnippet-0.6.1c"))

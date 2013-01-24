@@ -1,6 +1,9 @@
 (require 'cl)
 (require 'autoinsert)
 (require 'uniquify)
+(require 'helm)
+(require 'helm-misc)
+(require 'helm-config)
 
 ;;;------------------------------------------------------------
 ;;; global variables
@@ -137,8 +140,6 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
 
-(require 'helm)
-(require 'helm-config)
 (helm-mode 1)
 
 (message "Globals Loaded!")
