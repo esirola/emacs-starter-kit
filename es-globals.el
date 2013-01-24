@@ -1,8 +1,6 @@
 (require 'cl)
 (require 'autoinsert)
 (require 'uniquify)
-(require 'anything)
-(require 'anything-config)
 
 ;;;------------------------------------------------------------
 ;;; global variables
@@ -45,10 +43,11 @@
 (setq calendar-week-start-day 1)
 (setq visible-bell t)
 (setq-default save-place t)
+(setq enable-recursive-minibuffers t)
 
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'find-file-hooks 'auto-insert)
-(add-hook 'before-save-hook #'delete-trailing-whitespace)
+;(add-hook 'before-save-hook #'delete-trailing-whitespace)
 (add-hook 'shell-hook 'ansi-color-for-comint-mode-on)
 
 (line-number-mode 1)
@@ -57,7 +56,7 @@
 (menu-bar-mode t)
 ;;(cua-mode t)
 ;;(ffap-bindings)
-(ido-mode t)
+;;(ido-mode t)
 (recentf-mode 1)
 
 (when window-system
@@ -137,6 +136,10 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
+
+(require 'helm)
+(require 'helm-config)
+(helm-mode 1)
 
 (message "Globals Loaded!")
 
