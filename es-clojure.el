@@ -1,41 +1,34 @@
 ;;; ----------------------------------------------------------------------
-;;; SLIME/CLOJURE
+;;; CLOJURE
 ;;; ----------------------------------------------------------------------
 
-;; Customize swank-clojure start-up to reflect possible classpath changes
-;; M-x ielm `slime-lisp-implementations RET or see 'swank-clojure.el' for more
-
-;(require 'slime)
+(require 'es-common)
 (require 'paredit)
 (require 'clojure-mode)
-(require 'es-common)
-(require 'starter-kit-lisp)
+(require 'nrepl)
+(require 'ac-nrepl)
 
-(eval-after-load "slime"
-  '(progn
-    ;; "Extra" features (contrib)
-    ;; (slime-setup
-    ;;  '(slime-repl slime-banner slime-highlight-edits slime-fuzzy))
-    (setq
-     ;; Use UTF-8 coding
-     slime-net-coding-system 'utf-8-unix
-     ;; Use fuzzy completion (M-Tab)
-     ;;slime-complete-symbol-function 'slime-fuzzy-complete-symbol
-     )
-    ;; Use parentheses editting mode paredit
-    (add-hook 'slime-mode-hook 'paredit-mode-enable)
-    ))
-
-(eval-after-load "swank-clojure"
-  '(progn
-    ;; Make REPL more friendly to Clojure (ELPA does not include this?)
-    ;; The function is defined in swank-clojure.el but not used?!?
-    (add-hook 'slime-repl-mode-hook 'swank-clojure-slime-repl-modify-syntax t)))
-
-(add-hook 'slime-mode-hook 'set-up-slime-ac)
-(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
 (eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'slime-repl-mode))
+  '(add-to-list 'ac-modes 'nrepl-mode))
+
+(add-hook 'clojure-mode-hook 'paredit-mode)
+
+(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
+(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+
+(add-hook 'nrepl-mode-hook 'subword-mode)
+(add-hook 'nrepl-mode-hook 'paredit-mode)
+(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+
+(defun set-auto-complete-as-completion-at-point-function ()
+  (setq completion-at-point-functions '(auto-complete)))
+
+(add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
+
+(add-hook 'nrepl-mode-hook 'set-auto-complete-as-completion-at-point-function)
+(add-hook 'nrepl-interaction-mode-hook 'set-auto-complete-as-completion-at-point-function)
+
+;(define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
 
 (message "Clojure loaded!")
 

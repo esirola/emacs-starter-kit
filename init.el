@@ -17,6 +17,15 @@
 (require 'ansi-color)
 (require 'recentf)
 
+;; a fix for package.el's dependency tracking, that seems to be
+;; bugged (see http://melpa.milkbox.net/#known-issues)
+(defadvice package-compute-transaction
+  (before
+   package-compute-transaction-reverse (package-list requirements)
+   activate compile)
+  "reverse the requirements"
+  (setq requirements (reverse requirements))
+  (print requirements))
 
 (defun partition (list length)
   (loop
@@ -37,9 +46,8 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/modules"))
 
-(dolist (p (list '("melpa" . "http://melpa.milkbox.net/packages/")
-                 '("marmalade" . "http://marmalade-repo.org/packages/")))
-  (add-to-list 'package-archives p))
+(dolist (p (list '("melpa" . "http://melpa.milkbox.net/packages/")))
+  (add-to-list 'package-archives p nil))
 
 (package-initialize)
 
@@ -47,6 +55,7 @@
   (package-refresh-contents))
 
 (defvar my-packages '(clojure-mode
+		      nrepl
                       smex
                       idle-highlight-mode
                       ;;clojure-test-mode
@@ -61,15 +70,10 @@
                       ;;dired+
                       smex
                       org
-		      helm
-                      ;;anything
-                      ;;anything-config
+                      helm
                       auto-complete
-                      ac-slime
-                      ;; ergoemacs-keybindings
-                      ;; slime
-                      ;; slime-repl
-                      ;;elisp-slime-nav
+                      ac-nrepl
+                      ack-and-a-half
                       magit))
 
 (dolist (p my-packages)
@@ -89,7 +93,8 @@
              es-colors
              es-deft
              es-aliases
-             es-bindings))
+             es-bindings
+             ))
   (require m))
 
 ;;(add-to-list 'load-path (concat dot-emacs-dir "/yasnippet-0.6.1c"))
