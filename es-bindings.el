@@ -40,7 +40,6 @@
         helm-c-source-man-pages             ;; man pages
         helm-c-source-info-emacs))))        ;; emacs
 
-
 (global-set-key (kbd "<f1>") 'delete-other-windows)
 ;; manipolazione finestre + semplice
 (global-set-key (kbd "S-<f1>") 'delete-window)

@@ -17,8 +17,8 @@
 (require 'ansi-color)
 (require 'recentf)
 
-;; a fix for package.el's dependency tracking, that seems to be 
-;; bugged (see http://melpa.milkbox.net/#known-issues) 
+;; a fix for package.el's dependency tracking, that seems to be
+;; bugged (see http://melpa.milkbox.net/#known-issues)
 (defadvice package-compute-transaction
   (before
    package-compute-transaction-reverse (package-list requirements)
@@ -46,9 +46,7 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/modules"))
 
-(dolist (p (list '("melpa" . "http://melpa.milkbox.net/packages/")
-                 ;;'("marmalade" . "http://marmalade-repo.org/packages/")
-		 ))
+(dolist (p (list '("melpa" . "http://melpa.milkbox.net/packages/")))
   (add-to-list 'package-archives p nil))
 
 (package-initialize)
@@ -63,13 +61,13 @@
                       ;;clojure-test-mode
                       paredit
                       color-theme
-                      color-theme-twilight
+                      ;;color-theme-twilight
                       ido-ubiquitous
                       yasnippet
-                      yasnippet-bundle
+                      ;;yasnippet-bundle
                       bookmark+
                       deft
-                      dired+
+                      ;;dired+
                       smex
                       org
                       helm
