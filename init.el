@@ -46,28 +46,35 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/modules"))
 
-(dolist (p (list '("melpa" . "http://melpa.milkbox.net/packages/")))
-  (add-to-list 'package-archives p nil))
+;(dolist (p (list '("melpa" . "http://melpa.milkbox.net/packages/")))
+;  (add-to-list 'package-archives p nil))
+
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (package-initialize)
 
-(when (not package-archive-contents)
-  (package-refresh-contents))
+(setq custom-file "~/.emacs.d/custom.el")
+(when (file-exists-p custom-file)
+    (load custom-file))
+
+(ignore-errors   
+  (when (not package-archive-contents)
+    (package-refresh-contents)))
 
 (defvar my-packages '(clojure-mode
 		      nrepl
-                      smex
                       idle-highlight-mode
                       ;;clojure-test-mode
                       paredit
                       color-theme
-                      ;;color-theme-twilight
+                      ;color-theme-twilight
                       ido-ubiquitous
                       yasnippet
                       ;;yasnippet-bundle
                       bookmark+
                       deft
-                      ;;dired+
+                      dired+
                       smex
                       org
                       helm
@@ -75,30 +82,40 @@
                       ac-nrepl
                       ack-and-a-half
                       magit))
-
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
+(ignore-errors
+  (dolist (p my-packages)
+    (when (not (package-installed-p p))
+      (package-install p))))
 
 ;;(require 'yasnippet) ;; not yasnippet-bundle
 ;;(yas/initialize)
 
+;(eval-after-load 'clojure-mode (require 'es-clojure))
+
 (dolist (m '(starter-kit
              es-globals
              es-erlang
-             es-clojure
-             es-python
              es-skel
-             es-org
              es-colors
              es-deft
              es-aliases
              es-bindings
+             clojure-mode-autoloads
              ))
   (require m))
 
+
+(dolist (pf '((clojure-mode . "es-clojure")
+              ;(erlang-mode . "es-erlang")
+              (org-mode . "es-org")
+              (python-mode . "es-python")))
+  (eval-after-load (car pf) `(load ,(cdr pf))))
+
+;;
+
+(add-to-list 'auto-mode-alist '("\\.erl$" . erlang-mode))
+
+
+
 ;;(add-to-list 'load-path (concat dot-emacs-dir "/yasnippet-0.6.1c"))
 
-(setq custom-file "~/.emacs.d/custom.el")
-(when (file-exists-p custom-file)
-    (load custom-file))

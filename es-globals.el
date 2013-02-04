@@ -4,6 +4,8 @@
 (require 'helm)
 (require 'helm-misc)
 (require 'helm-config)
+(require 'magit-autoloads)
+(require 'bookmark+-autoloads)
 
 ;;;------------------------------------------------------------
 ;;; global variables
@@ -15,6 +17,19 @@
   (list (format "%s %%S: %%j " (system-name))
         '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 (defconst european-calendar-style 't)
+
+(defgroup mycustom nil
+  "my emacs customization variables")
+
+(defcustom es-erlang-root-dir nil
+  "Top-level dir for erlang/OTP."
+  :type 'directory
+  :group 'mycustom)
+
+(defcustom es-distel-root-dir nil
+  "Top-level dir for distel."
+  :type 'directory
+  :group 'mycustom)
 
 
 ;; ----------------------------------------------------------------------
