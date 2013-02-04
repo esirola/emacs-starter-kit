@@ -31,6 +31,9 @@
   :type 'directory
   :group 'mycustom)
 
+(autoload 'es-erlang-setup "es-erlang")
+(add-to-list 'auto-mode-alist '("\\.erl$" es-erlang-setup t))
+
 
 ;; ----------------------------------------------------------------------
 ;; carica le features estese di dired
