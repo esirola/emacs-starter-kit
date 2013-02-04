@@ -63,6 +63,9 @@
 (setq-default save-place t)
 (setq enable-recursive-minibuffers t)
 
+(dolist (c '(windows-1252 utf-8))
+  (prefer-coding-system c))
+
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'find-file-hooks 'auto-insert)
 ;(add-hook 'before-save-hook #'delete-trailing-whitespace)
