@@ -9,6 +9,15 @@
   ;; customize keys
   (local-set-key [return] 'newline-and-indent))
 
+(defun ebin-dirs (root)
+  (let ((myebin (list (concat root "/ebin")))
+        (deps-ebins (file-expand-wildcards (concat root "/deps/*/ebin")))
+        (apps-ebins (file-expand-wildcards (concat root "/apps/*/ebin"))))
+    (remove-if-not #'file-exists-p (nconc myebin deps-ebins apps-ebins))))
+
+(defun erl-pa-directives (dirs)
+  (apply #'nconc (mapcar (lambda (x) (list "-pa" x)) dirs)))
+
 (defun es-erlang-setup ()
  (add-to-list 'exec-path (concat es-erlang-root-dir "/bin"))
 
@@ -44,7 +53,8 @@
    "Additional keys to bind when in Erlang shell.")
 
  (let ((distel-elisp-root (concat es-distel-root-dir
-                                  "/elisp")))
+                                  "/elisp"))
+       (erl-pa-dirs (erl-pa-directives (ebin-dirs es-erlang-project-root))))
    ;; in case distel is installed, activate it
    (cond ((file-exists-p distel-elisp-root)
           (add-to-list 'load-path (expand-file-name distel-elisp-root))
@@ -64,13 +74,15 @@
                   ;; pretty much anywhere without having to muck with NetInfo
                   ;; ... but I only tested it on Mac OS X.
                   (car (split-string (shell-command-to-string "hostname"))))))
-          (setq inferior-erlang-machine-options '("-mnesia" "dir" "\"/tmp/mnesia-store\""
-                                                  "-sname" "emacs"
-                                                  ;; default uses
-                                                  ;; ~/.erlang.cookie, which
-                                                  ;; is fine
-                                                  ;;"-setcookie" "riak"
-                                                  )))
+          (setq inferior-erlang-machine-options (nconc
+                                                 '("-mnesia" "dir" "\"/tmp/mnesia-store\""
+                                                   "-sname" "emacs"
+                                                   ;; default uses
+                                                   ;; ~/.erlang.cookie, which
+                                                   ;; is fine
+                                                   ;;"-setcookie" "riak"
+                                                   )
+                                                 erl-pa-dirs)))
          ;; otherwise, just leave a message
          (t
           (message "Cannot load distel, check your path"))))
