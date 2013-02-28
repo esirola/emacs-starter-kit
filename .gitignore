@@ -12,3 +12,6 @@ url
 swank
 anything-c-adaptive-history
 distel
+custom.el
+ac-comphist.dat
+helm-c-adaptive-history
