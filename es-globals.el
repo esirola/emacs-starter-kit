@@ -31,6 +31,14 @@
   :type 'directory
   :group 'mycustom)
 
+(defcustom es-erlang-project-root nil
+  "Top-level directory for current erlang project."
+  :type 'directory
+  :group 'mycustom)
+
+(autoload 'es-erlang-setup "es-erlang")
+(add-to-list 'auto-mode-alist '("\\.erl$" es-erlang-setup t))
+
 
 ;; ----------------------------------------------------------------------
 ;; carica le features estese di dired

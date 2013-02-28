@@ -94,7 +94,6 @@
 
 (dolist (m '(starter-kit
              es-globals
-             es-erlang
              es-skel
              es-colors
              es-deft
@@ -106,15 +105,11 @@
 
 
 (dolist (pf '((clojure-mode . "es-clojure")
-              ;(erlang-mode . "es-erlang")
               (org-mode . "es-org")
               (python-mode . "es-python")))
   (eval-after-load (car pf) `(load ,(cdr pf))))
 
 ;;
-
-(add-to-list 'auto-mode-alist '("\\.erl$" . erlang-mode))
-
 
 
 ;;(add-to-list 'load-path (concat dot-emacs-dir "/yasnippet-0.6.1c"))
