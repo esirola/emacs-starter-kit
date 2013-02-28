@@ -156,7 +156,12 @@
 ;;   "Turn on pseudo-structural editing of Lisp code."
 ;;   t)
 
-;; auto-complete everything
+;; a hook used by some major modes
+(defun set-newline-and-indent ()
+  (local-set-key (kbd "RET") 'newline-and-indent))
+
+;(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'set-newline-and-indent)
 
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
