@@ -3,6 +3,7 @@
   "My Python programming mode settings."
   (interactive)
   (setq indent-tabs-mode nil)
+  (set-newline-and-indent)
   (local-set-key (kbd "<f4>") 'insert-python-header))
 
 (when (locate-library "python-mode")

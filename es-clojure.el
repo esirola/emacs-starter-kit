@@ -12,7 +12,7 @@
   '(add-to-list 'ac-modes 'nrepl-mode))
 
 (add-hook 'clojure-mode-hook 'paredit-mode)
-
+(add-hook 'clojure-mode-hook 'set-newline-and-indent)
 (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
 (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
 
