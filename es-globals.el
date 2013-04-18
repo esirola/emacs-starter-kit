@@ -4,6 +4,7 @@
 (require 'helm)
 (require 'helm-misc)
 (require 'helm-config)
+(require 'helm-aliases)
 (require 'magit-autoloads)
 (require 'bookmark+-autoloads)
 
