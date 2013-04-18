@@ -15,3 +15,7 @@ distel
 custom.el
 ac-comphist.dat
 helm-c-adaptive-history
+tramp
+session.*
+\#*\#
+esirola.el
