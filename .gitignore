@@ -19,3 +19,8 @@ tramp
 session.*
 \#*\#
 esirola.el
+auto-install.el
+eshell
+newsticker
+eslaptop-2.el
+eslaptop.local.el
