@@ -15,6 +15,7 @@ distel
 custom.el
 ac-comphist.dat
 helm-c-adaptive-history
+helm-adaptive-history
 tramp
 session.*
 \#*\#
