@@ -34,7 +34,7 @@
      (diff-header ((t (:foreground "#F8F8F2" :background "#232526"))))
      (diff-hunk-header ((t (:foreground "#AE81FF" :background "#232526"))))
      (diff-removed ((t (:foreground "#F92672" :weight bold))))
-     (dired-directory ((t (:foreground "F92672"))))
+     (dired-directory ((t (:foreground "VioletRed1"))))
      (escape-glyph ((t (:foreground "#E6DB74"))))
      (minibuffer-prompt ((t (:foreground "#66D9EF"))))
      (mode-line ((t (:foreground "#F8F8F2" :background "#000000"
