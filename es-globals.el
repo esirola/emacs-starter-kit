@@ -40,6 +40,7 @@
 (autoload 'es-erlang-setup "es-erlang")
 (add-to-list 'auto-mode-alist '("\\.erl$" es-erlang-setup t))
 
+;; octave
 (add-to-list 'auto-mode-alist '("\\.m$" octave-mode t))
 
 
