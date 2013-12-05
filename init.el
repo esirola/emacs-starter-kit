@@ -1,6 +1,15 @@
 ;; These should be loaded on startup rather than autoloaded on demand
 ;; since they are likely to be used in every session
 
+(cond
+ ((eq system-type 'darwin)
+  (unless (null window-system)
+    (dolist (v '((height . 45)
+                 (width . 90)))
+      (add-to-list 'initial-frame-alist v)))
+  (set-default-font "-apple-Menlo-medium-normal-normal-*-18-*-*-*-m-0-iso10646-1")))
+
+
 (require 'cl)
 ;; When you visit a file, point goes to the last place where it was
 ;; when you previously visited the same file.
@@ -63,6 +72,7 @@
     (package-refresh-contents)))
 
 (defvar my-packages '(clojure-mode
+                      undo-tree
 		      nrepl
                       idle-highlight-mode
                       ;;clojure-test-mode

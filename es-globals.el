@@ -7,6 +7,9 @@
 (require 'helm-aliases)
 (require 'magit-autoloads)
 (require 'bookmark+-autoloads)
+(ignore-errors
+  (require 'undo-tree)
+  (global-undo-tree-mode))
 
 ;;;------------------------------------------------------------
 ;;; global variables
