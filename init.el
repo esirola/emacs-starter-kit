@@ -26,6 +26,15 @@
 (require 'ansi-color)
 (require 'recentf)
 
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
 ;; a fix for package.el's dependency tracking, that seems to be
 ;; bugged (see http://melpa.milkbox.net/#known-issues)
 (defadvice package-compute-transaction
