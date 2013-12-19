@@ -4,6 +4,8 @@
 ;; ----------------------------------------------------------------------
 
 (require 'es-xterm)
+(require 'helm-projectile)
+(require 'helm-autoloads)
 (es-apply-xterm-bindings)
 
 ;;; ----------------------------------------------------------------------
@@ -13,7 +15,6 @@
 (global-set-key (kbd "C-l") 'goto-line)
 (autoload 'py-complete-init "py-complete")
 (add-hook 'python-mode-hook 'py-complete-init)
-
 (global-set-key (kbd "M-.") 'hippie-expand)
 
 (defun es-switch-buffer ()
@@ -22,12 +23,14 @@
    :prompt "Switch to: "
    :candidate-number-limit 20            ;; up to 15 of each
    :sources
-   '(helm-c-source-buffers-list               ;; buffers
-     helm-c-source-recentf               ;; recent files
-     helm-c-source-bookmarks             ;; bookmarks
-     helm-c-source-files-in-current-dir  ;; current dir
+   '(helm-c-source-buffers-list          ; buffers
+     helm-c-source-recentf               ; recent files
+     helm-c-source-bookmarks             ; bookmarks
+     helm-c-source-files-in-current-dir  ; current dir
      helm-c-source-locate)))
 
+(global-set-key (kbd "<f6>") 'helm-find-files)
+(global-set-key (kbd "<f5>") 'helm-projectile)
 (global-set-key (kbd "<f9>") 'es-switch-buffer)
 
 (global-set-key (kbd "C-c I")  ;; i -> info
@@ -49,7 +52,7 @@
 (global-set-key (kbd "S-<f3>") 'previous-buffer)
 (global-set-key (kbd "<f4>") 'next-frame)
 (global-set-key (kbd "S-<f4>") 'previous-frame)
-(global-set-key (kbd "<f5>") 'other-window)
+(global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "<f7>") 'smex)
 (global-set-key (kbd "<f10>") 'deft)
 (global-set-key (kbd "<f11>") 'dired-jump)

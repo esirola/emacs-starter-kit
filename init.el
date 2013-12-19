@@ -86,6 +86,7 @@
                       idle-highlight-mode
                       ;;clojure-test-mode
                       paredit
+                      projectile
                       color-theme
                       ;color-theme-twilight
                       ido-ubiquitous
@@ -129,7 +130,3 @@
   (eval-after-load (car pf) `(load ,(cdr pf))))
 
 ;;
-
-
-;;(add-to-list 'load-path (concat dot-emacs-dir "/yasnippet-0.6.1c"))
-
