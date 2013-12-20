@@ -9,7 +9,9 @@
 (require 'bookmark+-autoloads)
 (ignore-errors
   (require 'undo-tree)
-  (global-undo-tree-mode))
+  (global-undo-tree-mode 1)
+  (defalias 'redo 'undo-tree-redo)
+  (defalias 'undo 'undo-tree-undo))
 
 ;;;------------------------------------------------------------
 ;;; global variables
