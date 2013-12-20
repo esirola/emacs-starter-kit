@@ -171,6 +171,8 @@
 ;;   "Turn on pseudo-structural editing of Lisp code."
 ;;   t)
 
+(require 'paredit-autoloads)
+
 ;; a hook used by some major modes
 (defun set-newline-and-indent ()
   (local-set-key (kbd "RET") 'newline-and-indent))
@@ -183,6 +185,9 @@
 (ac-config-default)
 
 (helm-mode 1)
+
+(dolist (h '(subword-mode enable-paredit-mode))
+  (add-hook 'emacs-lisp-mode-hook h))
 
 (message "Globals Loaded!")
 

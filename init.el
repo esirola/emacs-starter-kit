@@ -6,9 +6,12 @@
   (unless (null window-system)
     (dolist (v '((height . 45)
                  (width . 90)))
-      (add-to-list 'initial-frame-alist v)))
-  (set-default-font "-apple-Menlo-medium-normal-normal-*-18-*-*-*-m-0-iso10646-1")))
-
+      (add-to-list 'initial-frame-alist v))
+    (set-default-font "-apple-Menlo-medium-normal-normal-*-18-*-*-*-m-0-iso10646-1"))
+  (setq helm-locate-command (concat "mdfind -onlyin " 
+				    (expand-file-name "~") 
+				    " -name %s %s")
+        locate-command "mdfind")))
 
 (require 'cl)
 ;; When you visit a file, point goes to the last place where it was
@@ -98,6 +101,7 @@
                       smex
                       org
                       helm
+                      helm-projectile
                       auto-complete
                       ac-nrepl
                       ack-and-a-half
