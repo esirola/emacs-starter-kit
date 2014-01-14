@@ -53,7 +53,7 @@
 (global-set-key (kbd "<f4>") 'next-frame)
 (global-set-key (kbd "S-<f4>") 'previous-frame)
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "<f7>") 'smex)
+(global-set-key (kbd "<f7>") 'execute-extended-command)
 (global-set-key (kbd "<f10>") 'deft)
 (global-set-key (kbd "<f11>") 'dired-jump)
 (global-set-key (kbd "S-<f11>") 'dired-jump-other-window)
@@ -64,10 +64,10 @@
 
 ;; set F8 key to do emacs's C-x
 (global-set-key (kbd "<f8>") ctl-x-map)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;(global-set-key (kbd "M-x") 'smex)
+;(global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; This is your old M-x.
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+;(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 
 (message "bindings loaded!")

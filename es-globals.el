@@ -169,9 +169,9 @@
 ;;; paredit mode (gestione automatica delle parentesi)
 ;;; ----------------------------------------------------------------------
 ;; incasina gestione region, disabilitato
-;; (autoload 'enable-paredit-mode "paredit"
-;;   "Turn on pseudo-structural editing of Lisp code."
-;;   t)
+ (autoload 'enable-paredit-mode "paredit"
+   "Turn on pseudo-structural editing of Lisp code."
+   t)
 
 (require 'paredit-autoloads)
 
@@ -179,7 +179,7 @@
 (defun set-newline-and-indent ()
   (local-set-key (kbd "RET") 'newline-and-indent))
 
-;(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'set-newline-and-indent)
 
 (require 'auto-complete-config)

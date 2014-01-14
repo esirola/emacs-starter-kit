@@ -84,28 +84,29 @@
     (package-refresh-contents)))
 
 (defvar my-packages '(clojure-mode
+		      idle-highlight-mode
+                      ;smex
+		      magit
+		      helm
+                      helm-projectile
+		      bookmark+
+                      auto-complete
+                      ac-nrepl
                       undo-tree
 		      nrepl
-                      idle-highlight-mode
                       ;;clojure-test-mode
                       paredit
                       projectile
-                      color-theme
                       ;color-theme-twilight
                       ido-ubiquitous
                       yasnippet
                       ;;yasnippet-bundle
-                      bookmark+
-                      deft
                       dired+
-                      smex
                       org
-                      helm
-                      helm-projectile
-                      auto-complete
-                      ac-nrepl
                       ack-and-a-half
-                      magit))
+                      deft
+                      ;color-theme
+                      ))
 (ignore-errors
   (dolist (p my-packages)
     (when (not (package-installed-p p))

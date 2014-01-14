@@ -54,8 +54,8 @@
   (add-to-list 'load-path esk-user-dir)
 
   (setq smex-save-file (concat user-emacs-directory ".smex-items"))
-  (smex-initialize)
-  (global-set-key (kbd "M-x") 'smex)
+  ;(smex-initialize)
+  ;(global-set-key (kbd "M-x") 'smex)
 
   (when (file-exists-p esk-system-config) (load esk-system-config))
   (when (file-exists-p esk-user-config) (load esk-user-config))
