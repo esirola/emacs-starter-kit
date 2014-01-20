@@ -7,7 +7,9 @@
     (dolist (v '((height . 45)
                  (width . 90)))
       (add-to-list 'initial-frame-alist v))
-    (set-default-font "-apple-Menlo-medium-normal-normal-*-18-*-*-*-m-0-iso10646-1"))
+    ;(set-default-font
+    ;"-apple-Menlo-medium-normal-normal-*-18-*-*-*-m-0-iso10646-1")
+    )
   (setq helm-locate-command (concat "mdfind -onlyin " 
 				    (expand-file-name "~") 
 				    " -name %s %s")
@@ -124,6 +126,7 @@
              es-deft
              es-aliases
              es-bindings
+             es-python
              clojure-mode-autoloads
              ))
   (require m))
@@ -131,7 +134,8 @@
 
 (dolist (pf '((clojure-mode . "es-clojure")
               (org-mode . "es-org")
-              (python-mode . "es-python")))
+              ;;(python-mode . "es-python")
+              ))
   (eval-after-load (car pf) `(load ,(cdr pf))))
 
 ;;

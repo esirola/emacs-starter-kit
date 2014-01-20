@@ -13,8 +13,8 @@
 ;;; ----------------------------------------------------------------------
 
 (global-set-key (kbd "C-l") 'goto-line)
-(autoload 'py-complete-init "py-complete")
-(add-hook 'python-mode-hook 'py-complete-init)
+;(autoload 'py-complete-init "py-complete")
+;(add-hook 'python-mode-hook 'py-complete-init)
 (global-set-key (kbd "M-.") 'hippie-expand)
 
 (defun es-switch-buffer ()

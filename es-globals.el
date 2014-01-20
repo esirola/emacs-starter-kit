@@ -177,6 +177,7 @@
 
 ;; a hook used by some major modes
 (defun set-newline-and-indent ()
+  "turns on auto indentation on RET"
   (local-set-key (kbd "RET") 'newline-and-indent))
 
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
