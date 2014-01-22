@@ -107,6 +107,7 @@
                       org
                       ack-and-a-half
                       deft
+                      flymake-cursor
                       ;color-theme
                       ))
 (ignore-errors
