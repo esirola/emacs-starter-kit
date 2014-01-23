@@ -134,9 +134,7 @@
 
 
 (dolist (pf '((clojure-mode . "es-clojure")
-              (org-mode . "es-org")
-              ;;(python-mode . "es-python")
-              ))
+              (org-mode . "es-org")))
   (eval-after-load (car pf) `(load ,(cdr pf))))
 
 ;;
