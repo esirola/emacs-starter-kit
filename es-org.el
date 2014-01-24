@@ -9,7 +9,6 @@
   (global-set-key (kbd "C-c l") 'org-store-link)
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c r") 'org-remember)
-  (org-remember-insinuate)
   (setq org-mobile-directory "~/Dropbox/MobileOrg"
         org-directory "~/Dropbox/org/"
         org-mobile-inbox-for-pull "~/Dropbox/org/from-mobile.org"
