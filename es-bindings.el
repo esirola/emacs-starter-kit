@@ -17,6 +17,8 @@
 ;(add-hook 'python-mode-hook 'py-complete-init)
 (global-set-key (kbd "M-.") 'hippie-expand)
 
+(global-set-key (kbd "C-c c") 'org-capture)
+
 (defun es-switch-buffer ()
   (interactive)
   (helm

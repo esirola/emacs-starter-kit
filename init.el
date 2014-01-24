@@ -102,23 +102,27 @@
                       ;color-theme-twilight
                       ido-ubiquitous
                       yasnippet
-                      ;;yasnippet-bundle
+                      yasnippet-bundle
                       dired+
                       org
                       ack-and-a-half
                       deft
-                      flymake-cursor
+                      epc
+                      jedi
                       ;color-theme
+                      virtualenv
+                      flycheck
                       ))
-(ignore-errors
+;;(ignore-errors)
+(let ((package-refreshed nil))
   (dolist (p my-packages)
     (when (not (package-installed-p p))
+      (unless package-refreshed
+        (package-refresh-contents)
+        (setf package-refreshed t))
       (package-install p))))
 
-;;(require 'yasnippet) ;; not yasnippet-bundle
-;;(yas/initialize)
-
-;(eval-after-load 'clojure-mode (require 'es-clojure))
+(yas/initialize)
 
 (dolist (m '(starter-kit
              es-globals
@@ -128,13 +132,9 @@
              es-aliases
              es-bindings
              es-python
+             es-org
              clojure-mode-autoloads
-             ))
+             es-clojure))
   (require m))
-
-
-(dolist (pf '((clojure-mode . "es-clojure")
-              (org-mode . "es-org")))
-  (eval-after-load (car pf) `(load ,(cdr pf))))
 
 ;;
