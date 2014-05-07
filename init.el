@@ -86,6 +86,7 @@
     (package-refresh-contents)))
 
 (defvar my-packages '(clojure-mode
+                      cider
 		      idle-highlight-mode
                       ;smex
 		      magit
@@ -95,24 +96,21 @@
                       auto-complete
                       ac-nrepl
                       undo-tree
-		      nrepl
                       ;;clojure-test-mode
-                      paredit
+                      smartparens
                       projectile
                       ;color-theme-twilight
                       ido-ubiquitous
                       yasnippet
-                      yasnippet-bundle
+                      ;;yasnippet-bundle
                       dired+
                       org
                       ack-and-a-half
                       deft
                       epc
                       jedi
-                      ;color-theme
                       virtualenv
-                      flycheck
-                      ))
+                      flycheck))
 ;;(ignore-errors)
 (let ((package-refreshed nil))
   (dolist (p my-packages)
@@ -122,7 +120,7 @@
         (setf package-refreshed t))
       (package-install p))))
 
-(yas/initialize)
+;;(yas/initialize)
 
 (dolist (m '(starter-kit
              es-globals
