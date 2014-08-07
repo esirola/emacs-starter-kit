@@ -170,7 +170,7 @@
 ;;; ----------------------------------------------------------------------
 (require 'smartparens-config)
 (smartparens-global-mode t)
-
+(sp-use-smartparens-bindings)
 ;; a hook used by some major modes
 (defun set-newline-and-indent ()
   "turns on auto indentation on RET"

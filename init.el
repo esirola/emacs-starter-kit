@@ -89,6 +89,7 @@
                       cider
 		      idle-highlight-mode
                       ;smex
+                      key-chord
 		      magit
 		      helm
                       helm-projectile

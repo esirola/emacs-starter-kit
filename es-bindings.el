@@ -8,6 +8,11 @@
 (require 'helm-autoloads)
 (es-apply-xterm-bindings)
 
+(require 'key-chord)
+(key-chord-mode 1)
+(key-chord-define-global "oo" 'other-window)
+(key-chord-define-global "kk" 'kill-buffer)
+
 ;;; ----------------------------------------------------------------------
 ;;; keybindings
 ;;; ----------------------------------------------------------------------

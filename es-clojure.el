@@ -7,26 +7,17 @@
   (require 'cider)
   (require 'ac-nrepl)
 
-  (eval-after-load "auto-complete"
-    '(add-to-list 'ac-modes 'nrepl-mode))
-
-  (add-hook 'clojure-mode-hook 'set-newline-and-indent)
-  (add-hook 'nrepl-interaction-mode-hook 'cider-turn-on-eldoc-mode)
-  (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
-
-  (add-hook 'cider-repl-mode-hook 'subword-mode)
+  (setq cider-repl-use-clojure-font-lock t)
+  (setq cider-repl-result-prefix ";; => ")
+  (add-hook 'cider-repl-mode-hook 'smartparens-strict-mode)
   (add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
-
-  (defun set-auto-complete-as-completion-at-point-function ()
-    (setq completion-at-point-functions '(auto-complete)))
-
-  (add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
-
-  (add-hook 'nrepl-mode-hook 'set-auto-complete-as-completion-at-point-function)
-  (add-hook 'nrepl-interaction-mode-hook 'set-auto-complete-as-completion-at-point-function)
-
-                                        ;(define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
-
+  (add-hook 'cider-repl-mode-hook 'subword-mode)
+  (add-hook 'cider-mode-hook 'ac-nrepl-setup)
+  (add-hook 'clojure-mode-hook 'set-newline-and-indent)
+  (eval-after-load "auto-complete"
+    '(add-to-list 'ac-modes 'cider-repl-mode))
+  (eval-after-load "cider"
+    '(define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
   (message "Clojure loaded!"))
 
 (provide 'es-clojure)
