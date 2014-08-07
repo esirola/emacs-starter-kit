@@ -1,79 +1,138 @@
-;;; init.el --- Where all the magic begins
-;;
-;; Part of the Emacs Starter Kit
-;;
-;; This is the first thing to get loaded.
-;;
-;; "Emacs outshines all other editing software in approximately the
-;; same way that the noonday sun does the stars. It is not just bigger
-;; and brighter; it simply makes everything else vanish."
-;; -Neal Stephenson, "In the Beginning was the Command Line"
-
-;; Turn off mouse interface early in startup to avoid momentary display
-;; You really don't need these; trust me.
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-
-;; Load path etc.
-
-(setq dotfiles-dir (file-name-directory
-                    (or (buffer-file-name) load-file-name)))
-
-;; Load up ELPA, the package manager
-
-(add-to-list 'load-path dotfiles-dir)
-
-(add-to-list 'load-path (concat dotfiles-dir "/elpa-to-submit"))
-
-(setq autoload-file (concat dotfiles-dir "loaddefs.el"))
-(setq package-user-dir (concat dotfiles-dir "elpa"))
-(setq custom-file (concat dotfiles-dir "custom.el"))
-
-(require 'package)
-(dolist (source '(("marmalade" . "http://marmalade-repo.org/packages/")
-                  ("elpa" . "http://tromey.com/elpa/")))
-  (add-to-list 'package-archives source t))
-(package-initialize)
-(require 'starter-kit-elpa)
-
 ;; These should be loaded on startup rather than autoloaded on demand
 ;; since they are likely to be used in every session
 
+(cond
+ ((eq system-type 'darwin)
+  (unless (null window-system)
+    (dolist (v '((height . 45)
+                 (width . 90)))
+      (add-to-list 'initial-frame-alist v))
+    ;(set-default-font
+    ;"-apple-Menlo-medium-normal-normal-*-18-*-*-*-m-0-iso10646-1")
+    )
+  (setq helm-locate-command (concat "mdfind -onlyin " 
+				    (expand-file-name "~") 
+				    " -name %s %s")
+        locate-command "mdfind")))
+
 (require 'cl)
+;; When you visit a file, point goes to the last place where it was
+;; when you previously visited the same file.
 (require 'saveplace)
+;; FFAP mode replaces certain key bindings for finding files,
+;; including C-x C-f, with commands that provide more sensitive
+;; defaults.
 (require 'ffap)
+;; Making Buffer Names Unique
 (require 'uniquify)
+;; translates ANSI SGR (Select Graphic Rendition) escape sequences
+;; like “Esc [ 30 m” into EmacsOverlays, TextProperties, or
+;; XEmacsExtents with face colours, bold, etc.
 (require 'ansi-color)
 (require 'recentf)
 
-;; backport some functionality to Emacs 22 if needed
-(require 'dominating-file)
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
-;; Load up starter kit customizations
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
 
-(require 'starter-kit-defuns)
-(require 'starter-kit-bindings)
-(require 'starter-kit-misc)
-(require 'starter-kit-registers)
-(require 'starter-kit-eshell)
-(require 'starter-kit-lisp)
-(require 'starter-kit-perl)
-(require 'starter-kit-ruby)
-(require 'starter-kit-js)
+;; a fix for package.el's dependency tracking, that seems to be
+;; bugged (see http://melpa.milkbox.net/#known-issues)
+(defadvice package-compute-transaction
+  (before
+   package-compute-transaction-reverse (package-list requirements)
+   activate compile)
+  "reverse the requirements"
+  (setq requirements (reverse requirements))
+  (print requirements))
 
-(regen-autoloads)
-(load custom-file 'noerror)
+(defun partition (list length)
+  (loop
+   while list
+   collect (subseq list 0 length)
+   do (setf list (nthcdr length list))))
 
-;; You can keep system- or user-specific customizations here
-(setq system-specific-config (concat dotfiles-dir system-name ".el")
-      user-specific-config (concat dotfiles-dir user-login-name ".el")
-      user-specific-dir (concat dotfiles-dir user-login-name))
-(add-to-list 'load-path user-specific-dir)
+(defun plist-to-alist (pl)
+  (let ((parts (partition pl 2)))
+    (mapcar #'(lambda (x) (cons (car x) (cadr x))) parts)))
 
-(if (file-exists-p system-specific-config) (load system-specific-config))
-(if (file-exists-p user-specific-dir)
-  (mapc #'load (directory-files user-specific-dir nil ".*el$")))
-(if (file-exists-p user-specific-config) (load user-specific-config))
+(cond ((< (string-to-int (car (split-string emacs-version "[.]" t))) 24)
+       (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+       (require 'package))
+      (t
+       (require 'package)
+       (add-to-list 'load-path (expand-file-name "~/.emacs.d"))))
 
-;;; init.el ends here
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/modules"))
+
+;(dolist (p (list '("melpa" . "http://melpa.milkbox.net/packages/")))
+;  (add-to-list 'package-archives p nil))
+
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+(package-initialize)
+
+(setq custom-file "~/.emacs.d/custom.el")
+(when (file-exists-p custom-file)
+    (load custom-file))
+
+(ignore-errors   
+  (when (not package-archive-contents)
+    (package-refresh-contents)))
+
+(defvar my-packages '(clojure-mode
+                      cider
+		      idle-highlight-mode
+                      ;smex
+                      key-chord
+		      magit
+		      helm
+                      helm-projectile
+		      bookmark+
+                      auto-complete
+                      ac-nrepl
+                      undo-tree
+                      ;;clojure-test-mode
+                      smartparens
+                      projectile
+                      ;color-theme-twilight
+                      ido-ubiquitous
+                      yasnippet
+                      ;;yasnippet-bundle
+                      dired+
+                      org
+                      ack-and-a-half
+                      deft
+                      epc
+                      jedi
+                      virtualenv
+                      flycheck))
+;;(ignore-errors)
+(let ((package-refreshed nil))
+  (dolist (p my-packages)
+    (when (not (package-installed-p p))
+      (unless package-refreshed
+        (package-refresh-contents)
+        (setf package-refreshed t))
+      (package-install p))))
+
+;;(yas/initialize)
+
+(dolist (m '(starter-kit
+             es-globals
+             es-skel
+             es-colors
+             es-deft
+             es-aliases
+             es-bindings
+             es-python
+             es-org
+             clojure-mode-autoloads
+             es-clojure))
+  (require m))
+
