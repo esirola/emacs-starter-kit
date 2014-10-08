@@ -14,7 +14,7 @@
 				    (expand-file-name "~") 
 				    " -name %s %s")
         locate-command "mdfind")))
-
+(setq insert-directory-program "/usr/local/bin/gls")
 (require 'cl)
 ;; When you visit a file, point goes to the last place where it was
 ;; when you previously visited the same file.
@@ -93,10 +93,9 @@
                       helm-projectile
 		      bookmark+
                       auto-complete
-                      ac-nrepl
                       undo-tree
-		      nrepl
-                      ;;clojure-test-mode
+		      cider
+		      ac-cider
                       paredit
                       projectile
                       ;color-theme-twilight
