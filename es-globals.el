@@ -187,7 +187,7 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
 
-(helm-mode 1)
+;(helm-mode 1)
 
 (dolist (h '(subword-mode enable-paredit-mode))
   (add-hook 'emacs-lisp-mode-hook h))
