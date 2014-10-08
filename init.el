@@ -95,9 +95,9 @@
                       helm-projectile
 		      bookmark+
                       auto-complete
-                      ac-nrepl
                       undo-tree
-                      ;;clojure-test-mode
+		      cider
+		      ac-cider
                       smartparens
                       projectile
                       ;color-theme-twilight
