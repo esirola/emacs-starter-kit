@@ -2,6 +2,16 @@
 ;;; erlang
 ;;; ----------------------------------------------------------------------
 
+
+(defconst distel-shell-keys
+  '(("\C-\M-i"   erl-complete)
+    ("\M-?"      erl-complete)
+    ("\M-."      erl-find-source-under-point)
+    ("\M-,"      erl-find-source-unwind)
+    ("\M-*"      erl-find-source-unwind)
+    )
+  "Additional keys to bind when in Erlang shell.")
+
 (defun es-erlang-mode-hook ()
   ;; when starting an Erlang shell in Emacs, default in the node name
   ;; add Erlang functions to an imenu menu
@@ -19,6 +29,7 @@
   (apply #'nconc (mapcar (lambda (x) (list "-pa" x)) dirs)))
 
 (defun es-erlang-setup ()
+  (interactive)
  (add-to-list 'exec-path (concat es-erlang-root-dir "/bin"))
 
  (let* ((libdir (concat es-erlang-root-dir "/lib/"))
@@ -42,15 +53,6 @@
  (require 'erlang-start)
  (require 'erlang-flymake)
  (require 'erlang-eunit)
-
- (defconst distel-shell-keys
-   '(("\C-\M-i"   erl-complete)
-     ("\M-?"      erl-complete)
-     ("\M-."      erl-find-source-under-point)
-     ("\M-,"      erl-find-source-unwind)
-     ("\M-*"      erl-find-source-unwind)
-     )
-   "Additional keys to bind when in Erlang shell.")
 
  (let ((distel-elisp-root (concat es-distel-root-dir
                                   "/elisp"))
@@ -86,6 +88,7 @@
          ;; otherwise, just leave a message
          (t
           (message "Cannot load distel, check your path"))))
+ 
  (when (featurep 'auto-complete)
    (dolist (m '(erlang-shell-mode erlang-mode))
      (add-to-list 'ac-modes m)))

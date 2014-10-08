@@ -6,7 +6,4 @@
 ;; Keywords: convenience, abbrev
 
 
-
-;(defun paredit-mode-enable () (paredit-mode +1))
-
 (provide 'es-common)

@@ -166,21 +166,16 @@
            (line-beginning-position 2)))))
 
 ;;; ----------------------------------------------------------------------
-;;; paredit mode (gestione automatica delle parentesi)
+;;; smartparens mode (gestione automatica delle parentesi)
 ;;; ----------------------------------------------------------------------
-;; incasina gestione region, disabilitato
- (autoload 'enable-paredit-mode "paredit"
-   "Turn on pseudo-structural editing of Lisp code."
-   t)
-
-(require 'paredit-autoloads)
-
+(require 'smartparens-config)
+(smartparens-global-mode t)
+(sp-use-smartparens-bindings)
 ;; a hook used by some major modes
 (defun set-newline-and-indent ()
   "turns on auto indentation on RET"
   (local-set-key (kbd "RET") 'newline-and-indent))
 
-(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'set-newline-and-indent)
 
 (require 'auto-complete-config)
@@ -189,7 +184,7 @@
 
 ;(helm-mode 1)
 
-(dolist (h '(subword-mode enable-paredit-mode))
+(dolist (h '(subword-mode))
   (add-hook 'emacs-lisp-mode-hook h))
 
 (message "Globals Loaded!")
