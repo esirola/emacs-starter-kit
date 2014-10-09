@@ -32,7 +32,7 @@
 (setq cider-interactive-eval-result-prefix ";; => ")
 (setq cider-repl-use-clojure-font-lock t)
 (eval-after-load "cider"
-  '(define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
+  '(define-key cider-mode-map (kbd "C-c C-d") 'ac-cider-popup-doc))
 
 (message "Clojure loaded!")
 
